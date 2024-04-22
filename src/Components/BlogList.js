@@ -1,38 +1,33 @@
-// import React, { useEffect, useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { CiEdit } from "react-icons/ci";
 import AddBtn from "./AddBtn";
 import { Link } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteBlog } from "../BlogReducer";
 import LogoutBtn from "./LogoutBtn";
 import { useEffect, useState } from "react";
 
 const BlogList = () => {
-  // const blogs = useSelector((store) => store.blogs);
-
   var userName = sessionStorage.getItem("name");
-  const [data, setData] = useState()
+  const [data, setData] = useState();
   const dispatch = useDispatch();
   let selectedId = 0;
-
 
   const handleRemoveBlog = (id) => {
     dispatch(deleteBlog(id));
     setData(JSON.parse(localStorage.getItem("blogs")));
   };
 
-  const test = (id) =>{
+  const test = (id) => {
     selectedId = id;
-  }
+  };
 
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("blogs")));
-  }, [setData])
-  
-  
+  }, [setData]);
+
   const renderBlogs = () =>
-  data.map((blog) => (
+    data.map((blog) => (
       <div key={blog.id}>
         {console.log(blog, blog.id)}
         <div className="card m-2" style={{ width: "20rem" }}>
@@ -50,7 +45,7 @@ const BlogList = () => {
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
-              <AiOutlineDelete  onClick={() => test(blog.id)}/>
+              <AiOutlineDelete onClick={() => test(blog.id)} />
             </Link>
           </div>
         </div>
@@ -103,7 +98,7 @@ const BlogList = () => {
 
   return (
     <>
-     <div className="justify-content-between m-5">
+      <div className="justify-content-between m-5">
         <h3 className="ml-5">Welcome {userName}</h3>
         <Link to="/LoginForm">
           <LogoutBtn />
@@ -125,10 +120,12 @@ const BlogList = () => {
           Add Blog
         </AddBtn>
       </Link>
-     
       <div className="text-center d-flex flex-wrap m-3 p-3 justify-content-center">
-        {/* {blogs.length ? renderBlogs() : <p>No Blogs</p>} */}
-        {data !== "" && data !== null && data !== undefined ? renderBlogs() : <p>"No Blogs"</p>}
+        {data !== "" && data !== null && data !== undefined ? (
+          renderBlogs()
+        ) : (
+          <p>No Blogs</p>
+        )}
       </div>
     </>
   );

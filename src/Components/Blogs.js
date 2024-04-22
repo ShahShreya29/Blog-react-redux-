@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import LogoutBtn from "./LogoutBtn";
 import { useEffect, useState } from "react";
- 
-const Blogs = () => {
-  // const blogs = useSelector((store) => store.blogs);
 
+const Blogs = () => {
   var userName = sessionStorage.getItem("name");
   const [data, setData] = useState();
 
@@ -37,7 +35,6 @@ const Blogs = () => {
         Blogs
       </h1>{" "}
       <div className="text-center d-flex flex-wrap m-3 p-3 justify-content-center">
-        {/* {blogs.length ? renderBlogs() : <p>No Blogs</p>} */}
         {data !== "" && data !== null && data !== undefined
           ? renderBlogs()
           : "No Blogs"}

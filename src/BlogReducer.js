@@ -1,14 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// let data = JSON.parse(localStorage.getItem("blogs"));
-// if (localStorage.getItem("blogs") !== null) {
-//   console.log("Item does not exist in localStorage ");
-//   var initialState = {data};
-// } else {
-//   console.log("Item exists in localStorage");
-// }
-
-const initialState =[]
+const initialState = [];
 
 const blogSlice = createSlice({
   name: "blogs",
@@ -31,14 +23,6 @@ const blogSlice = createSlice({
       return blogs;
     },
 
-    // editBlog: (state, action) => {
-    //   const { id, ...updatedBlogData } = action.payload;
-    //   const blogIndex = state.findIndex((blog) => blog.id === id);
-    //   if (blogIndex !== -1) {
-    //     state[blogIndex] = { ...state[blogIndex], ...updatedBlogData };
-
-    //   }
-    // },
     editBlog: (state, action) => {
       const { id, ...updatedBlogData } = action.payload;
       const blogIndex = state.findIndex((blog) => blog.id === id);

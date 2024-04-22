@@ -1,10 +1,10 @@
-span{
-    font-size: 12px;
-    padding: 3px;
-    color: red;
-    display: none;
+span {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
 }
 
-.inputError:invalid[Focused="true"]~span{
-    display: block;
+.inputError:invalid[Focused="true"] ~ span {
+  display: block;
 }

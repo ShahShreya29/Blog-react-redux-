@@ -1,5 +1,3 @@
-// import React, { useState } from "react";
-import "./LoginForm.module.css";
 import TextField from "./TextField";
 import AddBtn from "./AddBtn";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,68 +16,31 @@ const LoginForm = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [values,setValues] = useSta
+  let loggedUser = {};
 
   const handleLogin = (e) => {
-    var user = JSON.parse(localStorage.getItem("users"));
-
-    user = user.find(function (user) {
+    var users = JSON.parse(localStorage.getItem("users"));
+    let isUserValid = false;
+    users.map((user) => {
       if (e.email === user.email && btoa(e.password) === user.password) {
-        alert("login SuccessFully");
-        if (user.role === "user") {
-          navigate("/Blogs");
-        } else {
-          navigate("/BlogList");
-        }
+        sessionStorage.setItem("name", user.name);
         sessionStorage.setItem("user", JSON.stringify({ userEmail: e.email }));
         dispatch(logIn({ userEmail: e.email }));
-      } 
-      else {
-        alert("invalid username or password");
+        isUserValid = true;
+        loggedUser = user;
       }
     });
+    if (isUserValid) {
+      alert("login SuccessFully " + loggedUser.name);
+      if (loggedUser.role === "user") {
+        navigate("/Blogs");
+      } else {
+        navigate("/BlogList");
+      }
+    } else {
+      alert("invalid username or password");
+    }
   };
-
-  // const handleLogin = (e) => {
-  //   // e.preventDefault();
-
-  //   const formData = {
-  //     email: e.email,
-  //     password: e.password,
-  //   };
-
-  //   const errors = validate.validate(formData);
-
-  //   if (errors.length > 0) {
-  //     alert(errors.join("\n"));
-  //   } else {
-  //     var users = JSON.parse(localStorage.getItem("users")) || [];
-  //     sessionStorage.setItem("ce", e.email);
-
-  //     //  Find the user with the matching email
-  //     var user = users.find(function (user) {
-  //       return user.email === e.email;
-  //     });
-
-  //     if (user) {
-  //       // Check if passwords match
-  //       if (user.password === btoa(e.password)) {
-  //         alert("Login successful for " + user.name + "!");
-  //         sessionStorage.setItem('name',user.name)
-  //         if (user.role === "user") {
-  //           navigate("/Blogs");
-  //         } else {
-  //           navigate("/BlogList");
-  //         }
-  //       }else{
-  //         alert('invalid login')
-  //       }
-  //     }else{
-  //       alert('Please Signup first')
-  //     }
-  //   }
-
-  // };
 
   return (
     <>
@@ -118,7 +79,7 @@ const LoginForm = () => {
                     </AddBtn>
                   </div>
                   <h6 className="text-center m-3">
-                    PLEASE <Link to="/">SIGNUP!!</Link> FIRST
+                    PLEASE <Link to="/Blog-react-redux/">SIGNUP!!</Link> FIRST
                   </h6>
                 </div>
               </div>
@@ -131,6 +92,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-
-

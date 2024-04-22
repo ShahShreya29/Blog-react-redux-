@@ -19,7 +19,6 @@ const SignupForm = () => {
       .string()
       .required("Password is Required")
       .min(6, "At Least 6 Character"),
-    // role: yup.string().required("Role is Required"),
   });
 
   const dispatch = useDispatch();
@@ -34,11 +33,11 @@ const SignupForm = () => {
   const handleSignup = (e) => {
     var users = JSON.parse(localStorage.getItem("users")) || [];
     console.log(users);
-   const existingUser = users.find((user) => user.email === e.email);
+    const existingUser = users.find((user) => user.email === e.email);
     if (existingUser) {
       alert("User Already Exists");
     } else {
-      alert('Sigh UP SuccessFully ')
+      alert("Sigh UP SuccessFully ");
       navigate("/LoginForm");
       users.push({
         name: e.name,
@@ -49,115 +48,76 @@ const SignupForm = () => {
       localStorage.setItem("users", JSON.stringify(users));
 
       dispatch(signUP(values));
-    
     }
-  }
-
-    // const handleSignup = (e) => {
-    //   //  e.preventDefault();
-
-    //   const formData = {
-    //     name: e.name,
-    //     email: e.email,
-    //     password: e.password,
-    //     role: values.options,
-    //   };
-
-    //   const errors = validates.validate(formData);
-
-    //   if (errors.length > 0) {
-    //     alert(errors.join("\n"));
-    //   } else {
-    //     console.log(formData);
-    //     alert("login successfully");
-    //     navigate("/LoginForm");
-    //     var users = JSON.parse(localStorage.getItem("users")) || [];
-    //     users.push({
-    //       name: e.name,
-    //       email: e.email,
-    //       password: btoa(e.password),
-    //       role: values.options,
-    //     });
-
-    //     // Store the updated array back into localStorage
-    //     localStorage.setItem("users", JSON.stringify(users));
-    //   }
-    // };
-
-    return (
-      <>
-        <Formik
-          initialValues={{
-            name: "",
-            email: "",
-            password: "", 
-          }}
-          validationSchema={validates}
-          onSubmit={handleSignup}
-        >
-          {(Formik) => (
-            <div className="container m-5">
-              <Form>
-                <div className="row justify-content-center">
-                  <div className="form-group col-md-4 col-md-offset-5 align-center ">
-                    <h1 className="m-5 text-center">SignUp </h1>
-                    <TextField
-                      label="Name: "
-                      type="text"
-                      name="name"
-                      id="name"
-                    />
-                    <TextField
-                      label="Email: "
-                      type="email"
-                      name="email"
-                      id="email"
-                    />
-                    <TextField
-                      label="Password: "
-                      type="password"
-                      name="password"
-                      id="password"
-                    />
-
-                    <div className="mb-3">
-                      <SelectField
-                        name="role"
-                        label={options.label}
-                        options={options}
-                        value={options.value}
-                        onChange={(e) =>
-                          setValues({ ...values, options: e.target.value })
-                        }
-                      />
-                    </div>
-                    <div>
-                      <AddBtn
-                        style={{
-                          marginLeft: "130px",
-                          marginTop: "10px",
-                          backgroundColor: "#1070ef",
-                          color: "white",
-                          width: "99px",
-                        }}
-                      >
-                        {" "}
-                        SignUP
-                      </AddBtn>
-                    </div>
-                    <h6 className="text-center m-3">
-                      Already Have Account <Link to="/LoginForm">LogIn!!</Link>
-                    </h6>
-                  </div>
-                </div>
-              </Form>
-            </div>
-          )}
-        </Formik>
-      </>
-    );
   };
 
-export default SignupForm;
+  return (
+    <>
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          password: "",
+        }}
+        validationSchema={validates}
+        onSubmit={handleSignup}
+      >
+        {(Formik) => (
+          <div className="container m-5">
+            <Form>
+              <div className="row justify-content-center">
+                <div className="form-group col-md-4 col-md-offset-5 align-center ">
+                  <h1 className="m-5 text-center">SignUp </h1>
+                  <TextField label="Name: " type="text" name="name" id="name" />
+                  <TextField
+                    label="Email: "
+                    type="email"
+                    name="email"
+                    id="email"
+                  />
+                  <TextField
+                    label="Password: "
+                    type="password"
+                    name="password"
+                    id="password"
+                  />
 
-//confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
+                  <div className="mb-3">
+                    <SelectField
+                      name="role"
+                      label={options.label}
+                      options={options}
+                      value={options.value}
+                      onChange={(e) =>
+                        setValues({ ...values, options: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <AddBtn
+                      style={{
+                        marginLeft: "130px",
+                        marginTop: "10px",
+                        backgroundColor: "#1070ef",
+                        color: "white",
+                        width: "99px",
+                      }}
+                    >
+                      {" "}
+                      SignUP
+                    </AddBtn>
+                  </div>
+                  <h6 className="text-center m-3">
+                    Already Have Account <Link to="/LoginForm">LogIn!!</Link>
+                  </h6>
+                </div>
+              </div>
+            </Form>
+          </div>
+        )}
+      </Formik>
+    </>
+  );
+};
+
+export default SignupForm;

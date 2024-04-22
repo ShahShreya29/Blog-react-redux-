@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import TextField from "./TextField";
 import AddBtn from "./AddBtn";
 import { useNavigate } from "react-router-dom";
@@ -79,23 +78,3 @@ const AddBlog = () => {
 };
 
 export default AddBlog;
-
-// const [values, setValues] = useState({
-//   title: "",
-//   content: "",
-// });
-
-// var blogs = JSON.parse(localStorage.getItem("blogs")) || [];
-// blogs.push({
-//   title: e.title,
-//   content: e.content,
-
-// });
-
-// // Store the updated array back into localStorage
-// localStorage.setItem("blogs", JSON.stringify(blogs));
-
-// Resetting the form values
-// setValues({ title: "", content: "" });
-
-// Navigating to the BlogList page

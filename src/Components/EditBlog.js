@@ -1,4 +1,3 @@
-// import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { editBlog } from "../BlogReducer";
@@ -24,18 +23,12 @@ const EditBlog = () => {
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [values, setValues] = useState({
-  //   title: "",
-  //   content: "",
-  // });
 
   const data = JSON.parse(localStorage.getItem("blogs"));
   const blog = data.find((blog) => blog.id === parseInt(params.id));
   if (blog) {
     var t = blog.title;
     var c = blog.content;
-    // console.log("t", t);
-    // console.log("c", c);
   }
 
   const handleUpdateBlog = (values) => {
