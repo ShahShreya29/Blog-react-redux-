@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+let data = JSON.parse(localStorage.getItem("blogs"));
+if (localStorage.getItem("blogs") !== null) {
+  console.log("Item exist in localStorage ");
+  var initialState = data;
+} else {
+  console.log("Item   does not exists in localStorage");
+}
 
 const blogSlice = createSlice({
   name: "blogs",
