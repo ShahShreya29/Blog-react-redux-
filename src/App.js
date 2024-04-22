@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-         <Route path='/' element={  <SignupForm/>}></Route>
+         <Route path='Blog-react-redux/' element={  <SignupForm/>}></Route>
          <Route path='/LoginForm' element={<LoginForm/>}></Route>
          <Route path='/BlogList' element={<BlogList/>}></Route>
          <Route path='/Blogs' element={<Blogs/>}></Route>

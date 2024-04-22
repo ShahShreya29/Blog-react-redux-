@@ -33,7 +33,8 @@ const LoginForm = () => {
         }
         sessionStorage.setItem("user", JSON.stringify({ userEmail: e.email }));
         dispatch(logIn({ userEmail: e.email }));
-      } else {
+      } 
+      else {
         alert("invalid username or password");
       }
     });

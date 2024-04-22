@@ -1,19 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let data = JSON.parse(localStorage.getItem("blogs"));
-if (localStorage.getItem("blogs") !== null) {
-  console.log("Item does not exist in localStorage ");
-  var initialState = data;
-} else {
-  console.log("Item exists in localStorage");
-}
+// let data = JSON.parse(localStorage.getItem("blogs"));
+// if (localStorage.getItem("blogs") !== null) {
+//   console.log("Item does not exist in localStorage ");
+//   var initialState = {data};
+// } else {
+//   console.log("Item exists in localStorage");
+// }
 
+const initialState =[]
 
 const blogSlice = createSlice({
   name: "blogs",
   initialState,
   reducers: {
-    addBlog: (state = initialState, action) => {
+    addBlog: (state, action) => {
       const newBlog = {
         id: state.length + 1,
         ...action.payload,
